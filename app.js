@@ -1,7 +1,4 @@
-// Import Express
 const express = require('express');
-
-// Initialize the app
 const app = express();
 
 // Define a port
@@ -9,7 +6,7 @@ const PORT = 3000;
 
 // Define a route
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send('Hello, World! This is a simple Node.js application.');
 });
 
 // Start the server
