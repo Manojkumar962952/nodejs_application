@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: / # This is the location of the source artifact files (like zipped package)
+    destination: /home/ubuntu/myapp   # Where you want to deploy your files on EC2
+
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_service.sh
+      timeout: 300
+      runas: ubuntu
+
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStart:
+    - location: scripts/start_service.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStop:
+    - location: scripts/stop_service.sh
+      timeout: 300
+      runas: ubuntu
