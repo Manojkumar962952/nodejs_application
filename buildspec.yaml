@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Node.js and dependencies"
+      - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+      - apt-get install -y nodejs
+      - echo "Node.js version:"
+      - node -v
+      - echo "NPM version:"
+      - npm -v
+
+  pre_build:
+    commands:
+      - echo "Installing application dependencies"
+      - npm install
+
+  build:
+    commands:
+      - echo "Building the application"
+      - npm run build || echo "No build script defined, skipping build step"
+
+  post_build:
+    commands:
+      - echo "Packaging application for S3"
+      - zip -r artifacts.zip ./*
+
+artifacts:
+  files:
+    - artifacts.zip
+  discard-paths: yes
+  base-directory: . # Ensure all files are included
