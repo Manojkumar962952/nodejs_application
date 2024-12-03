@@ -1,4 +1,13 @@
-"scripts": {
+{
+  "name": "nodejs-simple-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application",
+  "main": "app.js",
+  "scripts": {
     "start": "node app.js",
-    "build": "echo 'Build successful'"
+    "build": "echo 'No build step required for this simple app'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
